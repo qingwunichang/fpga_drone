@@ -1,0 +1,45 @@
+{
+  "param":
+  {
+    "Model::model.sub_mean.mean_conv.weight":[8,4],
+    "Model::model.sub_mean.mean_conv.bias":[8,4],
+    "Model::model.head.body_reparam.weight":[8,4],
+    "Model::model.body.0.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.1.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.2.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.3.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.4.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.5.body.0.body_reparam.weight":[8,4],
+    "Model::model.body.6.body.0.body_reparam.weight":[8,4],
+    "Model::model.tail.body_reparam.weight":[8,4],
+    "Model::model.add_mean.mean_conv.weight":[8,4],
+    "Model::model.add_mean.mean_conv.bias":[8,4]
+  },
+  "output":
+  {
+    "Model::Model/QuantStub[model]/QuantStub[quant_stub]/input.1":[8,4],
+    "Model::Model/MeanShiftConv[model]/MeanShiftConv[sub_mean]/Conv2d[mean_conv]/input.2":[8,4],
+    "Model::Model/ConvGroup[model]/ConvGroup[head]/Conv2d[body_reparam]/input.3":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[0]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1308":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[0]/ReLU[act]/input.5":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[1]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1331":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[1]/ReLU[act]/input.7":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[2]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1354":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[2]/ReLU[act]/input.9":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[3]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1377":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[3]/ReLU[act]/input.11":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[4]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1400":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[4]/ReLU[act]/input.13":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[5]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1423":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[5]/ReLU[act]/input.15":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[6]/Sequential[body]/RCAB[0]/Conv2d[body_reparam]/1446":[8,4],
+    "Model::Model/Sequential[model]/Sequential[body]/ResidualGroup[6]/ReLU[act]/1449":[8,4],
+    "Model::Model/Add[model]/Add[skip_add]/input.17":[8,4],
+    "Model::Model/ConvGroup[model]/ConvGroup[tail]/Conv2d[body_reparam]/1471":[8,4],
+    "Model::Model/MeanShiftConv[model]/MeanShiftConv[add_mean]/Conv2d[mean_conv]/1492":[8,4]
+  },
+  "input":
+  {
+
+  }
+}

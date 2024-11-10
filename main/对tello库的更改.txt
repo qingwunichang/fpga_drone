@@ -1,0 +1,33 @@
+def update_frame(self):
+
+        """线程工作函数，用于通过 PyAV 获取帧"""
+
+        frame_count = 0
+
+        try:
+
+            for frame in self.container.decode(video=0):
+
+                frame_count += 1
+
+                if frame_count % self.scale == 0:  # 
+
+                    if self.with_queue:
+
+                        self.frames.append(np.array(frame.to_image()))
+
+                    else:
+
+                        self.frame = np.array(frame.to_image())
+
+
+
+                if self.stopped:
+
+                    self.container.close()
+
+                    break
+
+        except av.error.ExitError:
+
+            raise TelloException('没有足够的帧用于解码，请重试或在调用 get_frame_read() 之前增加视频 FPS')
