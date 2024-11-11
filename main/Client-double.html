@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tello Drone Controller</title>
-
     <style>
         body {
             display: flex;
@@ -69,12 +68,12 @@
 </head>
 <body>
     <div class="video-title-container">
-        <div class="video-title">Origin Video Stream</div>
+    	<div class="video-title">Origin Video Stream</div>
         <div class="video-title">Super Resolution Video Stream</div>
     </div>
 
     <div class="video-container">
-        <img id="video-stream-1" class="video-stream" />
+    	<img id="video-stream-1" class="video-stream" />
         <img id="video-stream-2" class="video-stream" />
     </div>
 
@@ -92,25 +91,32 @@
     </div>
 
     <script>
+        // 视频流 WebSocket 连接
         const videoElement1 = document.getElementById('video-stream-1');
         const videoElement2 = document.getElementById('video-stream-2');
-        const socket = new WebSocket('ws://localhost:5678');  // 确保端口号与服务器一致
+        const videoSocket = new WebSocket('ws://localhost:5678');  // 视频流端口
+        // 控制指令 WebSocket 连接
+        const controlSocket = new WebSocket('ws://localhost:5679');  // 控制指令端口
 
-        socket.onopen = () => console.log("WebSocket 已连接");
-        socket.onclose = () => console.log("WebSocket 已关闭");
+        videoSocket.onopen = () => console.log("视频流 WebSocket 已连接");
+        videoSocket.onclose = () => console.log("视频流 WebSocket 已关闭");
+        
+        controlSocket.onopen = () => console.log("控制指令 WebSocket 已连接");
+        controlSocket.onclose = () => console.log("控制指令 WebSocket 已关闭");
 
-        socket.onmessage = (event) => {
+        videoSocket.onmessage = (event) => {
             const [frame1, frame2] = event.data.split('||');
             videoElement1.src = 'data:image/jpeg;base64,' + frame1;
             videoElement2.src = 'data:image/jpeg;base64,' + frame2;
         };
 
+
         function sendCommand(command) {
-            if (socket.readyState === WebSocket.OPEN) {
-                socket.send(command);
+            if (controlSocket.readyState === WebSocket.OPEN) {
+                controlSocket.send(command);
                 console.log(`指令 "${command}" 已发送`);
             } else {
-                console.log("WebSocket 未连接，无法发送指令");
+                console.log("控制指令 WebSocket 未连接，无法发送指令");
             }
         }
     </script>
